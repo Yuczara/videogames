@@ -1,0 +1,42 @@
+
+<div style="background-color:#00001A;">
+
+<div class="container pt-4">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark opacity-50" style="background-image:url(https://www.pixel4k.com/wp-content/uploads/2018/10/ravage-fortnite-battle-royale-season-6-4k_1538941187.jpg); background-size: cover;">
+    <div class="col-md-12 text-end px-0">
+      <h1 class="display-2 fst-italic ">Video Games</h1>
+      <p class="lead my-3" style="font-size:2.75rem;">Panel del control</p>
+    </div>
+  </div>
+
+      <!--Mensaje en caso de no haber registros-->
+    <p *ngIf="VideoJuegos.length <= 0" class="text-center"> No hay Juegos registrados</p>
+
+
+      <!--Cards-->    
+      <div *ngFor="let videoJuego of VideoJuegos; let i = index" style="background-color: #EBEBF7;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-200 position-relative">
+        <div class="col-auto d-none d-lg-block">
+          <img src="{{videoJuego.image}}" class="bd-placeholder-img"  height="250" preserveAspectRatio="xMidYMid slice" 
+          focusable="false">
+        </div>
+        <div class="col p-4 d-flex flex-column position-static text-end">
+          <h3 class="mb-0">{{videoJuego.titulo}}</h3>
+          <div class="mb-1 text-muted">{{videoJuego.anio}}</div>
+          <p class="card-text mb-1">{{videoJuego.descripcion}}</p>
+          <p class="mb-1" style="color: gray; text-decoration: wavy;">{{videoJuego.clasificacion}}</p>
+
+          <div class="text-end">
+            <span [routerLink]="['/editar-videojuego',videoJuego._id]">
+              <button type="button" class="btn btn-warning btn-sm mx-2">Editar</button>
+            </span>
+
+              <span (click)="eliminarVideoJuego(videoJuego,i)">
+                <button type="button" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+            </span>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+</div>

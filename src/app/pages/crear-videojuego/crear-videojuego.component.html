@@ -1,0 +1,67 @@
+
+<div class="row justify-content-center">
+    <div class="col-md-4 ">
+
+        <div class="card-body pt-4 px-4 pb-2 mt-5 mb-3 rounded " style="background-color:#EBEBF7 ;">
+            <h3>Agregar Video Juego</h3> 
+            <form [formGroup]="videojuegoForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" class="form-control" formControlName="titulo" />
+                    <!-- error de validacion -->
+                    <div style="color: red;" *ngIf="enviado && myForm['titulo'].errors?.['required']">
+                        El titulo es obligatorio
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea class="form-control" formControlName="descripcion" cols="2" rows="3"></textarea>
+                    <!-- error de validacion -->
+                    <div style="color: red;" *ngIf="enviado && myForm['descripcion'].errors?.['required']">
+                        La descripcion es obligatoria
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clasificacion">Clasificacion</label>
+                    <select class="custom-select form-control" (change)="actualizarTipo($event.target.value)" formControlName="departamento">
+                        <option value="">Selecciona la clasificación.</option>
+                        <option *ngFor="let clasificacion of videojuegoTipo" value="{{ clasificacion }}">
+                            {{clasificacion}}</option>
+                    </select>
+                    <!-- error de validacion -->
+                    <div style="color: red;" *ngIf="enviado && myForm['clasificacion'].errors?.['required']">
+                        Debes seleccionar una clasificación
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="anio">Año:</label>
+                    <input type="text" class="form-control" formControlName="anio" />
+                    <!-- error de validacion -->
+                    <div style="color: red;" *ngIf="enviado && myForm['anio'].errors?.['required']">
+                        El anio es obligatorio
+                    </div>
+                    <div style="color: red;" *ngIf="enviado && myForm['anio'].errors?.['pattern']">
+                        Solo se permiten números
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Imagen</label>
+                    <input type="url" class="form-control" formControlName="image" required />
+                </div>
+
+                <div class="form-group mt-2" style="display: flex; align-items: center; text-align: center;">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">
+                        Agregar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
